@@ -91,14 +91,6 @@ export function SidebarWithLogoGov({ handleTabChange }) {
                     Sell Records
 
                 </ListItem>
-
-                <ListItem onClick={handleClickLivestock}>
-                    <ListItemPrefix>
-                        {/* <ShoppingBagIcon className="h-5 w-5" /> */}
-                        <InboxIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Livestock
-                </ListItem>
                 <ListItem onClick={handleClickProfile}>
                     <ListItemPrefix>
                         <UserCircleIcon className="h-5 w-5" />

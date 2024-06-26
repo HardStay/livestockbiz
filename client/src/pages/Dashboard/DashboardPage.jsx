@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { SidebarWithLogo } from '../../components/content/SideBarComponent';
 import { BiosecurityTabs, DashboardMenu } from '../Dashboard/DashboardMenuComponent.jsx';
-import { DashboardTabs } from '../../components/content/DashboardTabsComponent.jsx';
+import { DashboardTabsGovernment } from '../Dashboard/DashboardGovernmentPage.jsx'
+import { DashboardTabsPeternak} from '../Dashboard/DashboardPeternakPage.jsx'
 import { LiveStock } from '../LivestockPage/LivestockPage.jsx';
 import SellRecordContent from '../SellRecords/SellRecordContent.jsx';
 import ProfilePageContent from '../ProfilPage/ProfilePage.jsx';
-import LiveStockGov from '../LivestockPage/LiveStockGov.jsx';
+// import LiveStockGov from '../LivestockPage/LiveStockGov.jsx';
 import { SidebarWithLogoGov } from '../../components/content/SideBarComponentGov.jsx';
 import SellRecordContentGov from '../SellRecords/SellRecordContentGov.jsx';
 import AnimalDistributionData from '../AnimalDIstributionPage/AnimalDistributionData.jsx';
+import AiBiz from '../AiBiz/AiBiz.jsx';
 
 export const DashboardPage = () => {
     const [activeContent, setActiveContent] = useState("dashboardData");
@@ -25,11 +27,11 @@ export const DashboardPage = () => {
                 </div>
                 <div className="col-span-9 w-full bg-gray-200">
                     <DashboardMenu handleTabChange={handleTabChange} />
-                    {activeContent === "dashboardData" && <DashboardTabs />}
+                    {activeContent === "dashboardData" && <DashboardTabsPeternak />}
                     {activeContent === "livestock" && <LiveStock />}
                     {activeContent === "sellrecords" && <SellRecordContent />}
                     {activeContent === "profile" && <ProfilePageContent />}
-                    {activeContent === "biosecurity" && <BiosecurityTabs />}
+                    {activeContent === "aibiz" && <AiBiz />}
                 </div>
             </div>
         </div>
@@ -51,8 +53,8 @@ export const DashboardPageGovernment = () => {
                 </div>
                 <div className="col-span-9 w-full bg-gray-200">
                     <DashboardMenu handleTabChange={handleTabChange} />
-                    {activeContent === "dashboardData" && <DashboardTabs />}
-                    {activeContent === "livestockGov" && <LiveStockGov />}
+                    {activeContent === "dashboardData" && <DashboardTabsGovernment />}
+                    {/* {activeContent === "livestockGov" && <LiveStockGov />} */}
                     {activeContent === "sellrecordsGov" && <SellRecordContentGov />}
                     {activeContent === "mapData" && <AnimalDistributionData />}
                     {activeContent === "profile" && <ProfilePageContent />}

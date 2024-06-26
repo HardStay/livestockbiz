@@ -21,6 +21,7 @@ import {
     Cog6ToothIcon,
     InboxIcon,
     PowerIcon,
+    ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/solid";
 import {
     ChevronRightIcon,
@@ -43,6 +44,10 @@ export function SidebarWithLogo({ handleTabChange }) {
 
     const handleClickSellRecords = () => {
         handleTabChange("sellrecords");
+    };
+
+    const handleClickAiBiz = () => {
+        handleTabChange("aibiz");
     };
 
     const handleClickDashboard = (tab) => {
@@ -91,6 +96,16 @@ export function SidebarWithLogo({ handleTabChange }) {
                     </ListItemPrefix>
                     Livestock
                 </ListItem>
+
+                <ListItem onClick={handleClickAiBiz}>
+                    <ListItemPrefix>
+                        {/* <ShoppingBagIcon className="h-5 w-5" /> */}
+                        <ChatBubbleBottomCenterTextIcon className="h-5 w-5" />
+                        {/* <InboxIcon className="h-5 w-5" /> */}
+                    </ListItemPrefix>
+                    AiBiz
+                </ListItem>
+
                 <ListItem onClick={handleClickProfile}>
                     <ListItemPrefix>
                         <UserCircleIcon className="h-5 w-5" />

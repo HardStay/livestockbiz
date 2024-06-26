@@ -1,0 +1,32 @@
+GET http://localhost:5000/penjualanHewanTernakPerBulan/2024
+###
+GET http://localhost:3000/dinas/1
+
+###
+POST http://localhost:3000/dinas
+Content-Type: application/json
+
+{
+    "usernameDinas": "DinasKesehatan",
+    "passwordDinas": "DinasKesehatan",
+    "namaDinas": "Dinas Kesehatan",
+    "alamatDinas": "Jl. Kesehatan No. 1",
+    "nomorTelepon": "021-87654321"
+}
+
+###
+PATCH http://localhost:3000/dinas/1
+Content-Type: application/json
+
+{
+    "usernameDinas": "DinasHewan",
+    "passwordDinas": "DinasHewan",
+    "namaDinas": "Dinas Hewan",
+    "alamatDinas": "Jl. Hewan No. 1",
+    "nomorTelepon": "021-12345678"
+}
+
+###
+DELETE http://localhost:3000/dinas/2
+
+

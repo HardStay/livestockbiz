@@ -19,97 +19,92 @@ function DashboardDataShow() {
                     <div className="text-2xl font-medium text-gray-900 px-4 pt-4 w-full">Livestocks</div>
                 </div>
                 <div className="grid grid-cols-4 gap-4 p-4">
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
                             {/* <img src="/assets/cow.svg" alt="" class="w-[50px] h-[50px] m-8" /> */}
                             <img src="/assets/noun-pig-6542616.png" alt="" className="w-[70px] h-[70px]" />
 
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-cow-6694922.png" alt="" class="w-[70px] h-[70px]" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-cow-6694922.png" alt="" className="w-[70px] h-[70px]" />
 
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-sheep-6186377.png" alt="" class="w-[70px] h-[70px]" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-sheep-6186377.png" alt="" className="w-[70px] h-[70px]" />
 
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-chicken-6764444.png" alt="" class="w-[70px] h-[70px]" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-chicken-6764444.png" alt="" className="w-[70px] h-[70px]" />
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-buffalo-4576873.png" alt="" class="w-[70px] h-[70px]" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-buffalo-4576873.png" alt="" className="w-[70px] h-[70px]" />
 
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-goat-6694931.png" alt="" class="w-[50px] h-[50px] m-8" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-goat-6694931.png" alt="" className="w-[50px] h-[50px] m-8" />
 
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-duck-6713082.png" alt="" class="w-[50px] h-[50px] m-8" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-duck-6713082.png" alt="" className="w-[50px] h-[50px] m-8" />
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-rabbit-6694934.png" alt="" class="w-[50px] h-[50px] m-8" />
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-horse-6722214.png" alt="" class="w-[50px] h-[50px] m-8" />
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-rabbit-6694934.png" alt="" className="w-[50px] h-[50px] m-8" />
                         </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 w-full rounded-md h-28 bg-white">
-                        <div class="flex items-center justify-center">
-                            <img src="/assets/noun-turkey-6358872.png" alt="" class="w-[50px] h-[50px] m-8" />
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <label for="" class="text-gray-900 font-semibold">12</label>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
                         </div>
                     </div>
-
-
-
-
-
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-horse-6722214.png" alt="" className="w-[50px] h-[50px] m-8" />
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 w-full rounded-md h-28 bg-white">
+                        <div className="flex items-center justify-center">
+                            <img src="/assets/noun-turkey-6358872.png" alt="" className="w-[50px] h-[50px] m-8" />
+                        </div>
+                        <div className="flex items-center justify-center">
+                            <label for="" className="text-gray-900 font-semibold">12</label>
+                        </div>
+                    </div>
                 </div>
                 <div className="p-4 relative bottom-0 w-full">
                     <CardChartDashboard />
@@ -242,54 +237,54 @@ function CardChartDashboard() {
 }
 
 
-function DropdownMenu() {
-    return (
-        <div id="userDropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-            <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                <div>Bonnie Green</div>
-                <div className="font-medium truncate">name@flowbite.com</div>
-            </div>
-            <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                </li>
-                <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                </li>
-                <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                </li>
-            </ul>
-            <div className="py-1">
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-            </div>
-        </div>
-    );
-}
+// function DropdownMenu() {
+//     return (
+//         <div id="userDropdown" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+//             <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+//                 <div>Bonnie Green</div>
+//                 <div className="font-medium truncate">name@flowbite.com</div>
+//             </div>
+//             <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+//                 <li>
+//                     <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+//                 </li>
+//                 <li>
+//                     <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+//                 </li>
+//                 <li>
+//                     <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+//                 </li>
+//             </ul>
+//             <div className="py-1">
+//                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+//             </div>
+//         </div>
+//     );
+// }
 
-function AvatarButton() {
-    const [isOpen, setIsOpen] = useState(false);
+// function AvatarButton() {
+//     const [isOpen, setIsOpen] = useState(false);
 
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
+//     const toggleDropdown = () => {
+//         setIsOpen(!isOpen);
+//     };
 
-    return (
-        <div>
-            <img
-                id="avatarButton"
-                type="button"
-                data-dropdown-toggle="userDropdown"
-                data-dropdown-placement="bottom-start"
-                className="w-10 h-10 rounded-full cursor-pointer"
-                src="/docs/images/people/profile-picture-5.jpg"
-                alt="User dropdown"
-                onClick={toggleDropdown}
-            />
-            {isOpen && <DropdownMenu />}
-        </div>
-    );
-}
+//     return (
+//         <div>
+//             <img
+//                 id="avatarButton"
+//                 type="button"
+//                 data-dropdown-toggle="userDropdown"
+//                 data-dropdown-placement="bottom-start"
+//                 className="w-10 h-10 rounded-full cursor-pointer"
+//                 src="/docs/images/people/profile-picture-5.jpg"
+//                 alt="User dropdown"
+//                 onClick={toggleDropdown}
+//             />
+//             {isOpen && <DropdownMenu />}
+//         </div>
+//     );
+// }
 
 
 
