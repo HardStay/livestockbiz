@@ -11,7 +11,7 @@ import { verifyPeternak, verifyDinas } from "../middleware/authUser.js";
 const router = express.Router();
 
 router.get("/peternak", verifyDinas || verifyPeternak, getPeternak);
-router.get("/peternak/:id", verifyDinas || verifyPeternak, getPeternakById);
+router.get("/peternak/:id", getPeternakById);
 router.post("/peternak", createPeternak);
 router.patch("/peternak/:id", verifyDinas || verifyPeternak, updatePeternak);
 router.delete("/peternak/:id", verifyDinas || verifyPeternak, deletePeternak);

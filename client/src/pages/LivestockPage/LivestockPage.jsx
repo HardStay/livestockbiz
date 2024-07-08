@@ -171,7 +171,7 @@ const LivestockTable = ({
             <div className="md:w-1/4 flex justify-center items-center mb-4 md:mb-0">
               <QRCode
                 size={128}
-                value={`http://localhost:5000/hewanTernak/${idHewanTernak}`} // Set QR code value directly with URL
+                value={`http://localhost:3000/displayQR/${idHewanTernak}`} // Set QR code value directly with URL
                 onClick={() =>
                   onShowDataQr({
                     idHewanTernak,
@@ -188,7 +188,7 @@ const LivestockTable = ({
             <div className="md:w-3/4 md:pl-4">
               <div className="flex flex-wrap md:flex-nowrap mb-4">
                 <div className="w-full md:w-1/2 pr-2">
-                  <label className="block text-gray-700">Animal</label>
+                  <label className="block text-gray-700">Hewan</label>
                   {editMobId === idHewanTernak ? (
                     <select
                       value={jenisHewan}
@@ -201,7 +201,7 @@ const LivestockTable = ({
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
-                      <option value="">Select Animal</option>
+                      <option value="">Pilih Hewan</option>
                       {Object.keys(familyData).map((animal, index) => (
                         <option key={index} value={animal}>
                           {animal}
@@ -213,7 +213,7 @@ const LivestockTable = ({
                   )}
                 </div>
                 <div className="w-full md:w-1/2 pl-2">
-                  <label className="block text-gray-700">Family</label>
+                  <label className="block text-gray-700">Famili</label>
                   {editMobId === idHewanTernak ? (
                     <select
                       value={famili}
@@ -222,7 +222,7 @@ const LivestockTable = ({
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
-                      <option value="">Select Family</option>
+                      <option value="">Pilih Famili</option>
                       {familyData[jenisHewan] &&
                         familyData[jenisHewan].map((family, index) => (
                           <option key={index} value={family}>
@@ -237,7 +237,7 @@ const LivestockTable = ({
               </div>
               <div className="flex flex-wrap md:flex-nowrap mb-4">
                 <div className="w-full md:w-1/2 pr-2">
-                  <label className="block text-gray-700">Weight (Kg)</label>
+                  <label className="block text-gray-700">Berat (Kg)</label>
                   {editMobId === idHewanTernak ? (
                     <input
                       type="number"
@@ -252,7 +252,7 @@ const LivestockTable = ({
                   )}
                 </div>
                 <div className="w-full md:w-1/2 pl-2">
-                  <label className="block text-gray-700">Gender</label>
+                  <label className="block text-gray-700">Jenis Kelamin</label>
                   {editMobId === idHewanTernak ? (
                     <select
                       value={jenisKelamin}
@@ -265,7 +265,7 @@ const LivestockTable = ({
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
-                      <option value="">Select Gender</option>
+                      <option value="">Pilih Jenis Kelamin</option>
                       <option value="Jantan">Jantan</option>
                       <option value="Betina">Betina</option>
                     </select>
@@ -276,7 +276,7 @@ const LivestockTable = ({
               </div>
               <div className="flex flex-wrap md:flex-nowrap mb-4">
                 <div className="w-full md:w-1/2 pr-2">
-                  <label className="block text-gray-700">Age (Tahun)</label>
+                  <label className="block text-gray-700">Umur (Tahun)</label>
                   {editMobId === idHewanTernak ? (
                     <input
                       type="number"
