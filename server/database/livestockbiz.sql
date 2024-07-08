@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 05:57 AM
+-- Generation Time: Jul 07, 2024 at 09:03 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `dinas` (
   `idDinas` int(11) NOT NULL,
   `usernameDinas` varchar(50) DEFAULT NULL,
-  `passwordDinas` varchar(50) DEFAULT NULL,
+  `passwordDinas` varchar(255) DEFAULT NULL,
   `namaDinas` varchar(100) DEFAULT NULL,
   `alamatDinas` varchar(255) DEFAULT NULL,
   `nomorTelepon` varchar(15) DEFAULT NULL
@@ -41,7 +41,7 @@ CREATE TABLE `dinas` (
 --
 
 INSERT INTO `dinas` (`idDinas`, `usernameDinas`, `passwordDinas`, `namaDinas`, `alamatDinas`, `nomorTelepon`) VALUES
-(1, 'DinasHewan', 'DinasHewan', 'Dinas Hewan', 'Jl. Hewan No. 1', '021-12345678'),
+(1, 'DinasHewan', '$2b$10$jj5wyG9Cg6ThOjTgdEJP7OT2chLbmNDKWJ1trIvCDG/FZHtCMHdfa', 'Dinas Hewan', 'Jl. Hewan No. 1', '02112345678'),
 (3, 'DinasKesehatan', 'DinasKesehatan', 'Dinas Kesehatan', 'Jl. Kesehatan No. 1', '021-87654321');
 
 -- --------------------------------------------------------
@@ -867,7 +867,7 @@ INSERT INTO `penjualanhewanternak` (`idPenjualan`, `idHewanTernak`, `tanggalPenj
 CREATE TABLE `peternak` (
   `idPeternak` int(11) NOT NULL,
   `usernamePeternak` varchar(50) DEFAULT NULL,
-  `passwordPeternak` varchar(50) DEFAULT NULL,
+  `passwordPeternak` varchar(255) DEFAULT NULL,
   `namaPeternak` varchar(100) DEFAULT NULL,
   `nomorTelepon` varchar(15) DEFAULT NULL,
   `idLokasi` int(11) DEFAULT NULL
@@ -927,7 +927,216 @@ INSERT INTO `peternak` (`idPeternak`, `usernamePeternak`, `passwordPeternak`, `n
 (47, 'vika47', 'secure012', 'Vika Anggraini', '082456789025', 47),
 (48, 'wawan48', 'mypassword012', 'Wawan Setiawan', '083567890136', 48),
 (49, 'yuli49', 'pass12345', 'Yuli Hermansyah', '084678901247', 49),
-(50, 'zaki50', 'password2345', 'Zaki Mubarok', '085789012358', 50);
+(50, 'zaki50', '$2b$10$rv5udm6Jp7xPXy4Qgf70quaLT7UMgL252CAPqb8IWgECqDd5DxCJi', 'Zaki Mubarok', '085789012358', 50),
+(51, 'hardy', '$2b$10$I5Y.BzRFjRKRawYhB6OITO904reUO5YjdcbzKGaELMajpYJ1Ir3DS', 'Hardy Febryan', '08112323454', NULL),
+(52, 'Febryan', '$2b$10$OkycpQu.8amJiPPfYGZvE.qgvAXG8wU6ZvoM4nFGi7gYEDsmkS..S', 'Febryan', '08546323231', NULL),
+(53, 'Bryan', '$2b$10$ldfs.NbRnMrAqK.w5U.uuOQYhETTuFe.7DoIh11Ecv.UQp4kpfbvi', 'Hardy', '08548456384', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `sid` varchar(36) NOT NULL,
+  `expires` datetime DEFAULT NULL,
+  `data` text DEFAULT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`sid`, `expires`, `data`, `createdAt`, `updatedAt`) VALUES
+('-5rq8WVoq9mrT6ntfWIXS1dov63DbGRS', '2024-07-07 13:46:16', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:46:16', '2024-07-06 13:46:16'),
+('-EdB98AOtryl1iNFZBfxW0sqAJ7RpFaU', '2024-07-07 17:31:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('-Jp2gBredxL_UcHPFAwh1ddC_UPr0KE5', '2024-07-07 10:20:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:20:13', '2024-07-06 10:20:13'),
+('-Vv0OdRJsfpaf1WBAZXDMix7hV1Zr6nY', '2024-07-07 14:00:51', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:00:51', '2024-07-06 14:00:51'),
+('0NuMdnCVrME1Fv-05xTIFHFPLcWIfQ9W', '2024-07-07 17:06:27', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:06:27', '2024-07-06 17:06:27'),
+('1-4HbNIRg46J7LkpcaKZ2tDiS0eY1qq5', '2024-07-07 16:37:14', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:37:14', '2024-07-06 16:37:14'),
+('1QmGShuVu7E-H1WjX2pQI8cB55FEsWhY', '2024-07-07 10:20:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:20:29', '2024-07-06 10:20:29'),
+('1VKnYgLo-sUHOAFTqyxryLgP4Z4-r0Jx', '2024-07-07 17:51:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:29', '2024-07-06 17:51:29'),
+('1X5gJMdg0eY9-7uBrr2Wz44QOtujG3vk', '2024-07-07 17:51:40', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:40', '2024-07-06 17:51:40'),
+('2jrdd8mAh-3Yxe14FF5w9p_X64PwCJkV', '2024-07-07 17:24:03', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:03', '2024-07-06 17:24:03'),
+('2LyiAJwWU0TkCNDb3owLtEH_8o2-bGY6', '2024-07-07 17:45:19', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:45:19', '2024-07-06 17:45:19'),
+('2VzI7fZtJYIPK0RBv1xfnC-KV6mOFtM_', '2024-07-07 17:50:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:50:13', '2024-07-06 17:50:13'),
+('3LpgFB7NnukWtH0LQS5CgXnfBw-1lZCQ', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('3Xf_9-CK6eiw-n6EAVEk4fcGgRmCxqJB', '2024-07-07 14:19:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:19:21', '2024-07-06 14:19:21'),
+('4mXuvqOBLUoB1ryyZS3pp84D7dzR2Eh2', '2024-07-07 17:59:34', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:34', '2024-07-06 17:59:34'),
+('4_6tvL7FmW3ScEZ3IC1yuxZCubb1q8A0', '2024-07-07 17:06:27', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:06:27', '2024-07-06 17:06:27'),
+('5asGOh-wKUfcMKHOrWGVjsVqAiASOjzU', '2024-07-07 13:48:03', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:48:03', '2024-07-06 13:48:03'),
+('5M3Ih_j-pV4FtAxF-_f9zKZIFM90ztey', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('5nP8q02wThWaO0wcIWJXe0ltDaEG60_R', '2024-07-07 16:38:11', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:38:11', '2024-07-06 16:38:11'),
+('6ofuwnYLrXXjDiB3U8UJQdYgW1Q93VCW', '2024-07-07 10:20:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:20:13', '2024-07-06 10:20:13'),
+('6PhUkeF4hQ6WLd-lMv_r6qhZjyfhwbZt', '2024-07-07 14:20:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:20:21', '2024-07-06 14:20:21'),
+('6rEgGjAlV1w05h6HwEfLJ76q2nrAaeXi', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('6zI7x_ksS5eOqznavQhwR15ca6YBOOke', '2024-07-07 16:34:00', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:34:00', '2024-07-06 16:34:00'),
+('7dNkDsSQH481OufAxV375yCogEBwCVou', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:51', '2024-07-06 17:24:51'),
+('7DXqZk1lGV9AeNqTxxkQrUTw2u50YxBZ', '2024-07-07 17:51:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:29', '2024-07-06 17:51:29'),
+('7HaMQgCrsm9rENuZh-1adTiysr4IiKXF', '2024-07-07 13:48:38', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:48:38', '2024-07-06 13:48:38'),
+('7o365Q73_N_lilHgGOyYdOGrI8OQUY9q', '2024-07-07 14:20:00', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:20:00', '2024-07-06 14:20:00'),
+('7UUP8-VKnOZF-Yb-RxsyRaJ77wIFC5Bt', '2024-07-07 13:33:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:33:56', '2024-07-06 13:33:56'),
+('7ZZkAsGkfP6dpFpHScjTkhrgDlNlBVuN', '2024-07-07 14:20:21', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:20:21', '2024-07-06 14:20:21'),
+('85Inr23RHQ8wUV2F6c7FYkF8Nn-9FPqr', '2024-07-07 16:07:49', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:07:49', '2024-07-06 16:07:49'),
+('8ppBix_qBZoAOOIf4cTfD8rpdXsJRy3Q', '2024-07-07 16:36:30', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:36:30', '2024-07-06 16:36:30'),
+('95lqiOBupcviEHHxMp_J50O4_C6KGYvU', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('9DeCtMHKHhzGhGhQjJoZOrXgJlCVDYEM', '2024-07-07 17:26:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:26:08', '2024-07-06 17:26:08'),
+('9vQ6Qec1zYl1LdxgUCYUgtEaGrdHgds3', '2024-07-07 12:40:46', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 12:40:46', '2024-07-06 12:40:46'),
+('a2nwbOo92bR7IQPYAWtDmJkR1AkyLhYv', '2024-07-07 18:04:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:29', '2024-07-06 18:04:29'),
+('aTIbYuZeS9NfVv4pT8tS1WGq6naQlThx', '2024-07-07 13:50:22', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:50:22', '2024-07-06 13:50:22'),
+('b5Lk-SrRdlF9N7Tt3S8QgvVM8PSfzSSP', '2024-07-07 16:38:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:38:17', '2024-07-06 16:38:17'),
+('beB7UeYEjtwu-ozTAT8dvXuq3G_3U0x8', '2024-07-07 18:04:32', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"idPeternak\":50}', '2024-07-06 16:40:58', '2024-07-06 18:04:32'),
+('bFH-Dsg_osksX6FPT4QzpIlPlZJy85L9', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('bhw4Ti8HrDWI75J6cAV5p7U8IY_WYu3l', '2024-07-07 13:47:34', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:47:34', '2024-07-06 13:47:34'),
+('BwNjQPzZwnJPG-PqbzlzTRqKNHGeK-vm', '2024-07-07 14:17:16', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:17:16', '2024-07-06 14:17:16'),
+('c4KxiQ_6GtGMd5OQcGoBZ7YKT2T9Nqv7', '2024-07-07 13:44:28', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:44:28', '2024-07-06 13:44:28'),
+('c73_2HabEYCP3e_F_NG40nVtwbNMt-vs', '2024-07-07 13:48:57', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:48:57', '2024-07-06 13:48:57'),
+('cIO7Ux5zGqMBu9yQtwDj8Hp5wL-AxblC', '2024-07-07 16:36:23', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:36:23', '2024-07-06 16:36:23'),
+('CLYzfbdmOo3r4ur5W9OFQrw2pdecdVB2', '2024-07-07 10:50:52', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:50:52', '2024-07-06 10:50:52'),
+('CmLP8hh3CUlEB_izH6F9L6ZCvbr02lZu', '2024-07-07 16:33:04', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:33:04', '2024-07-06 16:33:04'),
+('CPpRlGsLrdqTCejb6DAqWjYlSrSE-nIU', '2024-07-07 16:40:57', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:57', '2024-07-06 16:40:57'),
+('CxAz_yt3Pb9F71dU8tzuuuNRq1_2gX7G', '2024-07-07 12:40:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 12:40:18', '2024-07-06 12:40:18'),
+('CYyymoUlnDf2rkkTQZlgNwbIx8NyMTxk', '2024-07-07 17:00:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:00:35', '2024-07-06 17:00:35'),
+('d-dwV1QPBSCeTDzHPu6iPBKDzxEPZ8Of', '2024-07-07 17:26:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:26:08', '2024-07-06 17:26:08'),
+('ddTA-XPoWyRxAxZ49Y0AuDNJ2fN2AC_v', '2024-07-07 13:46:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:46:29', '2024-07-06 13:46:29'),
+('DESDK7T8blb40BcsziXiON0HCksawFo2', '2024-07-07 18:04:27', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:27', '2024-07-06 18:04:27'),
+('di6CK1a3sZIaKNxMmBO3MmXAPY2F-ozW', '2024-07-07 10:50:52', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:50:52', '2024-07-06 10:50:52'),
+('DIVZ-tWI0ccanAPMIhhkS3zEaMj51hfr', '2024-07-07 10:20:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:20:13', '2024-07-06 10:20:13'),
+('DmS1YQCCf9WHZZWfAELMDpiUZjs_kqlk', '2024-07-07 13:44:27', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:44:27', '2024-07-06 13:44:27'),
+('DO_H8LnJyxZoQX-Oim2ZnAAPsqYFgJEI', '2024-07-07 17:31:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('dsJJNaSzKN9DoZnf7SwvL7nAnkGt3SxA', '2024-07-07 16:40:37', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:37', '2024-07-06 16:40:37'),
+('E4i-1k2SaY6bXh25cXYC_7by4CuxTCQf', '2024-07-07 13:49:14', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:49:14', '2024-07-06 13:49:14'),
+('EDdqvTD-4DDO7FnA2yE2dzrH2SXpKjok', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('eomvnEwBRBFDylhOKYkmsDQDKfT8uvfl', '2024-07-07 17:25:06', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:25:06', '2024-07-06 17:25:06'),
+('esVtHJMKumKVN8Z7ay6IFwzjd2iI-pLZ', '2024-07-07 16:40:37', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:37', '2024-07-06 16:40:37'),
+('ETEY8VyAyiw4UTIhxq25cN89XnyQsaCm', '2024-07-07 16:40:22', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:22', '2024-07-06 16:40:22'),
+('eUJbk_asuPjy2k_M5pa2rH2QuH5ayRxA', '2024-07-07 17:12:06', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:12:06', '2024-07-06 17:12:06'),
+('F0mHDOpIuU7fgyJEqVkuei51wYIFBpDM', '2024-07-07 13:47:16', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:47:16', '2024-07-06 13:47:16'),
+('F2cZPz0MWvGDXpgX3fB5-HchqcsU-Wo3', '2024-07-07 17:00:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:00:35', '2024-07-06 17:00:35'),
+('FFLqfg64Myf11xa6lpe6VRlld2xIgnc3', '2024-07-07 14:19:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:19:17', '2024-07-06 14:19:17'),
+('FGKSSZLcX0diMiDvyep2r2cvjlTawlh8', '2024-07-07 17:07:12', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:07:12', '2024-07-06 17:07:12'),
+('FKs5lfoYvjabcBs49r94YQY5Q8dgPhjx', '2024-07-07 17:59:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:35', '2024-07-06 17:59:35'),
+('fS-abZaBX4LAVVFb4oCFnwCtS3wx7XE8', '2024-07-07 13:47:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:47:56', '2024-07-06 13:47:56'),
+('fS8wVFOixWSRpezNo_3hKGbcOfywV7OE', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('GEraVPaSRgwaHfYKPQsvjR-icCHD7Xzr', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:51', '2024-07-06 17:24:51'),
+('GGtvO7YhB_hNq3HM7chZYIndhpiFvy0O', '2024-07-07 17:28:19', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:28:19', '2024-07-06 17:28:19'),
+('gvqb6UvZU74a1rQJHVaniJkNziL7TK5j', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('gwz6idMreN9fyt_mewwNGUV3wulZmGH_', '2024-07-07 17:24:55', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:55', '2024-07-06 17:24:55'),
+('GZS48pakyBsqXQavMZfqm3-TVcvk4RNM', '2024-07-07 16:38:23', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:38:23', '2024-07-06 16:38:23'),
+('H6gYRcZ3uXXKNOx-ER-ztxb5FtoHRDNI', '2024-07-07 17:59:34', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:34', '2024-07-06 17:59:34'),
+('HAp6sQD726Iif_VzDeEKHuqbigEB4ejS', '2024-07-07 17:30:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:30:56', '2024-07-06 17:30:56'),
+('Hbr7tWXOUsJSUErq-RXHY32eUTOGVtJY', '2024-07-07 14:19:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:19:39', '2024-07-06 14:19:39'),
+('HHKvmKlOoym4nhjQfI97GkMFRRPHS3zW', '2024-07-07 17:31:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('Hm2Mcaf6n8m-JFJoRGy1Ptq23e6Kjz1G', '2024-07-07 16:38:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:38:26', '2024-07-06 16:38:26'),
+('hOZUv9FUyFbA6_Mpztyh5t_Qbn1wYG50', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('HroYNr8bLmUV03Y60j30zlQLheyCXFfW', '2024-07-07 17:51:40', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:40', '2024-07-06 17:51:40'),
+('IB3B4a-w-cOKNB46PH85DuNguwplv4Zy', '2024-07-07 17:43:51', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:43:52', '2024-07-06 17:43:52'),
+('IB7YWRIIUdXWn4L6iCRW8eSZp8mxWLSG', '2024-07-07 17:00:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:00:35', '2024-07-06 17:00:35'),
+('IFnofyUUX7uX4_8Ytj_5LGP448__JedN', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('ihdVE__FC4cdAJlFbMVrtvmBnT5df_Wf', '2024-07-07 17:59:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:35', '2024-07-06 17:59:35'),
+('IMz25zZhj8gWxa0QX9RYxnriHkyFsHLj', '2024-07-07 14:17:16', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:17:16', '2024-07-06 14:17:16'),
+('IO1258GkZUsqvXGPCcv41FX5JxjJv7wU', '2024-07-07 17:30:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:30:56', '2024-07-06 17:30:56'),
+('jaCIdRP0331Ub157Wio29T_7n8pFxC6X', '2024-07-07 17:59:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:33', '2024-07-06 17:59:33'),
+('JAwxMqlvHpI6dRzllI1ZhbcGFxg_zxHx', '2024-07-07 17:51:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:29', '2024-07-06 17:51:29'),
+('JPARXI-eyEm_NZUQzAXoSY0yqxhS3yCr', '2024-07-07 18:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:08', '2024-07-06 18:04:08'),
+('K5BT7ooR432wg2vJUTzaxVO-SY5kI5Ga', '2024-07-07 18:04:19', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:19', '2024-07-06 18:04:19'),
+('kVIiVizGZ-JJFM6RXXyw2UIxAAGDlQcT', '2024-07-07 17:45:19', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:45:19', '2024-07-06 17:45:19'),
+('kWK1je5lf2t77nskSFUa0crd1g1V0tak', '2024-07-07 17:26:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:26:08', '2024-07-06 17:26:08'),
+('kZDDYS4OXPuo015wbfBFJ3aHQX0VIgwB', '2024-07-07 17:31:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('lbzuOF6zGigLzLrooH8hTPacbZ2hs79P', '2024-07-07 17:30:02', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:30:02', '2024-07-06 17:30:02'),
+('lEASSIeFzc3Cn8A_3Gs0E9dCH8Elo6gH', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('lOmE45cM1orfJKmvGid2FapIdJcHxY8x', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('ma3SldutuadXqnTukKxmBs23Suk2w_wA', '2024-07-07 18:04:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:29', '2024-07-06 18:04:29'),
+('maNps-wnnktAc5lE64opUH3byQzP8dhD', '2024-07-07 14:19:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:19:39', '2024-07-06 14:19:39'),
+('MiknDbg4xSMY4iG9QzjJpBQHsd7u6P25', '2024-07-07 17:51:26', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:26', '2024-07-06 17:51:26'),
+('mkXm37tYNvaathEvBWC5uf8_-0Iv8Un3', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('mPuqgRrKH8vhit-ybGAvvZjp8LuNExwn', '2024-07-07 18:04:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:29', '2024-07-06 18:04:29'),
+('mR6-s5VUY7aC8brGzMG-NLEnM_qoIH5-', '2024-07-07 16:33:01', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:33:01', '2024-07-06 16:33:01'),
+('mVl1Q1QNR0LenUBb12V4VcWN8fxCQ88A', '2024-07-07 16:37:14', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:37:14', '2024-07-06 16:37:14'),
+('MW8PspF2211aTghdaJWMAenxcx4u__eJ', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('mwJDL8jeVjXctvhgkNLlMn1jyfBhHuIm', '2024-07-07 17:59:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:33', '2024-07-06 17:59:33'),
+('MWY1joCr4azVtboMVnVjUjik8j41xV_o', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('MXvZ1kdw6fV8x8xQhwztldX0J9QaSIt3', '2024-07-07 13:53:05', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:53:05', '2024-07-06 13:53:05'),
+('n9rgvRbzyDG74Ha-zpyNeZ3sdiF5H2sb', '2024-07-07 17:14:30', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:14:30', '2024-07-06 17:14:30'),
+('NImPUVXe5A6quZcq6jp64BzgNdT8p2yN', '2024-07-07 17:30:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:30:56', '2024-07-06 17:30:56'),
+('njYsjCiIcJW4liMCstob71b7vIKBeIuI', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('nKmhCUDIMpEQ3e0bMKtbG4FGSJzJOw6I', '2024-07-07 14:46:09', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:46:09', '2024-07-06 14:46:09'),
+('O40q90HopfNVJKbFSb1Uhj22-8TTSOAG', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('Oc2h5H76dpT_RkfMUspESrwmFNESAiBq', '2024-07-07 16:40:40', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:40', '2024-07-06 16:40:40'),
+('OErsRoJEEljSBXCDJkJKnzIbapn3xvqL', '2024-07-07 10:20:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:20:13', '2024-07-06 10:20:13'),
+('OfBnW97nfKgkUXYqkfEIR84Qa4K166Ey', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:50', '2024-07-06 17:24:50'),
+('oFzMqscp7kdFyshX_1d7caIk8GrJ_qax', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('ojSef49zBWNZ-OxrpLGfACkZZKzb1WOv', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('Ol9uAS5I6_yB2aIYDrwZ01puNf00uIh5', '2024-07-07 08:39:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"idPeternak\":53}', '2024-07-06 08:39:35', '2024-07-06 08:39:35'),
+('otB5WGou3GrSi4DhUtK72zJxtp2VU7fv', '2024-07-07 17:50:19', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:50:19', '2024-07-06 17:50:19'),
+('pEogpT2cBPG8mcxOd4XeWAALm3Qs1pvZ', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('pOCpo2zqlZ1iYFKt0pzPr5yst3wZqJ7D', '2024-07-07 13:49:55', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:49:55', '2024-07-06 13:49:55'),
+('pz8Tm-O08mbcL5qyQlK1LyF186QP4tBb', '2024-07-07 16:49:52', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:49:52', '2024-07-06 16:49:52'),
+('QC5uwjTT78arnZhD6bTCfW8l0qOKQ6RN', '2024-07-07 17:11:37', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:11:37', '2024-07-06 17:11:37'),
+('QcyWo2NR2SCePz9BRzfiJ39O6PDz8Qpc', '2024-07-07 18:04:20', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:20', '2024-07-06 18:04:20'),
+('Qk65VTsEGwTl21WUphWFqyROLa-4YBtp', '2024-07-07 17:07:12', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:07:12', '2024-07-06 17:07:12'),
+('qo9rVUZ7id8s_lYcP-B1UwWEFGBNudWF', '2024-07-07 17:59:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:33', '2024-07-06 17:59:33'),
+('QR6qONVq3w-9A0Kf-n99AK2m88BrO4_N', '2024-07-07 14:00:51', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:00:51', '2024-07-06 14:00:51'),
+('QyOdT0_KP-kALFJnE-t8Hb36mH-R6zxj', '2024-07-07 13:52:07', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:52:07', '2024-07-06 13:52:07'),
+('rr1H1qoe_e6XbSEVbqOma92Cg_GMjB_m', '2024-07-07 13:33:57', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:33:57', '2024-07-06 13:33:57'),
+('ryBfH8-hhiyQ5k-N_LOCgo-6sCO5KRON', '2024-07-07 17:12:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:12:29', '2024-07-06 17:12:29'),
+('R_-UFqZIcUwoA7Uop2_BvqvKcFhC1pIQ', '2024-07-07 17:36:41', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"},\"idPeternak\":50}', '2024-07-06 09:19:01', '2024-07-06 17:36:41'),
+('sb6-ZaXEbJKseqmNskNadtDEdxBL2KUg', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('t44300DX39aaEiEBxtX4fFoQheytd2ZW', '2024-07-07 17:30:56', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:30:56', '2024-07-06 17:30:56'),
+('tDLPkD2NryEi5gn4PDtxqWa4Nv92__XG', '2024-07-07 18:04:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:29', '2024-07-06 18:04:29'),
+('tehG3XFFmNaMUKAI0aBrnltljKxLKTPt', '2024-07-07 13:47:28', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:47:28', '2024-07-06 13:47:28'),
+('tGWS9hz2HY7zBjb2RlDDG88tVE21a46o', '2024-07-07 17:31:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('tj76jJJu53g-9Zeo626iNCavnfmB9Q2d', '2024-07-07 16:40:22', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:22', '2024-07-06 16:40:22'),
+('tPPTrUN9rCw27QUbbkiRsMcNfow6JLKf', '2024-07-07 17:31:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('tsI3TzhgII-T_KribWLw207yLyvhhBci', '2024-07-07 16:39:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('TY8f2d8eyb-W5JFBJ9wVdoK9nanHOyjJ', '2024-07-07 13:49:03', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:49:03', '2024-07-06 13:49:03'),
+('U0-192sftZK77ObiGeNqsK1vfaWeZwkB', '2024-07-07 16:34:00', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:34:00', '2024-07-06 16:34:00'),
+('U5At_lFzWcVqITIP_PBiwXbfo3idSwnw', '2024-07-07 13:58:03', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:58:03', '2024-07-06 13:58:03'),
+('u7Q0MLZxR9LkOiN7Hd98uF3wZwRtbuZT', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('Ue4sPW0vF2Y8lGolQjat0dzXHsBqW12P', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('UXG4oODuRdW4HlJCHDXaK9c12myAb2QM', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('V15k2MDeplYlHKAMTLAeEUENBRm4RuWu', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:50', '2024-07-06 17:24:50'),
+('v1UumZjQzLvQPiTN5KKemLxplm_6g5Ux', '2024-07-07 14:19:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:19:17', '2024-07-06 14:19:17'),
+('v4QV1NM8Qp4Js3U0R7Sm021fjVV0i8f1', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:50', '2024-07-06 17:24:50'),
+('V7a_YxGbK-JTEJUED18BBfXu-Fzm6keu', '2024-07-07 16:36:30', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:36:30', '2024-07-06 16:36:30'),
+('VhRW_o8Qh6B8So8E1d10-nh7AiJg04zh', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:50', '2024-07-06 17:24:50'),
+('VJE2yBH0xn50IWsBoo13ZUYHj58DuoQr', '2024-07-07 10:20:13', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:20:13', '2024-07-06 10:20:13'),
+('vOvKU0RKK3EcpBHPt3k5ohLdFHtqhPwg', '2024-07-07 10:46:03', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 10:46:03', '2024-07-06 10:46:03'),
+('VtQuzhZWlGW-7wvTAW0A4rO6nWtlEa_t', '2024-07-07 17:26:45', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:26:45', '2024-07-06 17:26:45'),
+('vwkBt9HyYphza1UlfC8Do5AvzGELR9Px', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('w-RhdZgU4jDH5Gx9eJE-0PS7wmEWtg5I', '2024-07-07 13:49:46', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:49:46', '2024-07-06 13:49:46'),
+('Wau9bnQIeUpRRJ7QzgGCZb5ybEfsq0Xg', '2024-07-07 17:59:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:34', '2024-07-06 17:59:34'),
+('wkbRGwxIqMJFA8lW9zyuhvINCVA4f_Kq', '2024-07-07 17:59:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:34', '2024-07-06 17:59:34'),
+('wL99JsN3rBXEnQRlgpLgritUxfuVnzZt', '2024-07-07 14:20:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:20:35', '2024-07-06 14:20:35'),
+('WqWO4svEZaLBgg0mcFaRWJ8Vbfj-b_LR', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:50', '2024-07-06 17:24:50'),
+('X6nlQGVnamQJwmzF_DuKqPdLQsdy2QvY', '2024-07-07 13:57:55', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 13:57:56', '2024-07-06 13:57:56'),
+('xaMHn2QgiMHjCBiOMn7h6tgpEHMIU3mh', '2024-07-07 16:38:11', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:38:11', '2024-07-06 16:38:11'),
+('Xk12YV329HtEVaoo6XksHbsJxJAOAEsM', '2024-07-07 17:26:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:26:08', '2024-07-06 17:26:08'),
+('xVXw42s9adPyLZR8IJiEFNN0WRIIvsNp', '2024-07-07 17:29:40', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:29:40', '2024-07-06 17:29:40'),
+('Y3S-xKidpPbBs_0eo4asbtHiIXywi1eP', '2024-07-07 17:49:51', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:49:52', '2024-07-06 17:49:52'),
+('Y9qGkJ2mTue3iaKVjZWqFebH7yqv8lVb', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('ykYc5swoZy4FjIpkzZGXHRANo7VdxM_C', '2024-07-07 17:53:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:53:39', '2024-07-06 17:53:39'),
+('YldQi40mncxpnOokM8d-ukrLh4_2lfHl', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('Yy6gJCObvb2p9Q9f_36u-EUbTXpP5uZc', '2024-07-07 17:00:35', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:00:35', '2024-07-06 17:00:35'),
+('Z5HHbfyBE3KYXmvNmQTy5PLxjuxQhMR_', '2024-07-07 17:59:33', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:59:33', '2024-07-06 17:59:33'),
+('zA48_5SsjmB25TR4eh1h_7SNcokokb3_', '2024-07-07 14:19:39', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 14:19:39', '2024-07-06 14:19:39'),
+('zBzFGQaWAaR_Ke8R8gx653trJ0_1KSDw', '2024-07-07 17:31:07', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:07', '2024-07-06 17:31:07'),
+('zD4z1Ih_be9gaRRDc15X7sJ3IDDFYDSy', '2024-07-07 17:31:18', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:18', '2024-07-06 17:31:18'),
+('ZE_sV0vIpvsLmoX_oXCr7lQKMUNpgoIF', '2024-07-07 16:40:58', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:40:58', '2024-07-06 16:40:58'),
+('zIUm_P15TwUVH9W4C9Lb4YVLUAxA7DAc', '2024-07-07 17:51:29', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:51:29', '2024-07-06 17:51:29'),
+('zmpiqaI2jLMHcqj7jajJGXRwq3jm0iAa', '2024-07-07 17:24:50', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:24:50', '2024-07-06 17:24:50'),
+('zu3Rw6IOyaJVE5s9vZD-6zWHs8W0Rk1I', '2024-07-07 17:31:17', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:31:17', '2024-07-06 17:31:17'),
+('ZYpbbubbjC9pkqTrSeZy0Xuw-xQ-AaJF', '2024-07-07 18:04:19', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:19', '2024-07-06 18:04:19'),
+('_2lvaAT9SU5P3Es4b_BLEtr7iE0rgdne', '2024-07-07 17:45:25', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:45:25', '2024-07-06 17:45:25'),
+('_dWVGb4nwD8HZstKNDfTB-eGtQio5yLZ', '2024-07-07 17:04:08', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:04:08', '2024-07-06 17:04:08'),
+('_HCcizc-JRvOewj3hcwfmwbRg3MO2uwd', '2024-07-07 17:43:51', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:43:52', '2024-07-06 17:43:52'),
+('_k0m26ietp3tpNg3KBcMvobgzCIKZYHc', '2024-07-07 17:05:36', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 17:05:36', '2024-07-06 17:05:36'),
+('_KTffZrpeBdQKD3ScJ9pzwWXA7qunm01', '2024-07-07 16:39:12', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:39:13', '2024-07-06 16:39:13'),
+('_lxWXXDVp7sLeDblK9MPDjLZ4_ymUVi1', '2024-07-07 18:04:20', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 18:04:20', '2024-07-06 18:04:20'),
+('_U70i8OyVKulvxTggUfyMF_nS26VGXmX', '2024-07-07 16:36:23', '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"secure\":false,\"httpOnly\":true,\"path\":\"/\"}}', '2024-07-06 16:36:23', '2024-07-06 16:36:23');
 
 --
 -- Indexes for dumped tables
@@ -968,6 +1177,12 @@ ALTER TABLE `peternak`
   ADD KEY `idLokasi` (`idLokasi`);
 
 --
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`sid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -999,7 +1214,7 @@ ALTER TABLE `penjualanhewanternak`
 -- AUTO_INCREMENT for table `peternak`
 --
 ALTER TABLE `peternak`
-  MODIFY `idPeternak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `idPeternak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables

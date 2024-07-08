@@ -1,44 +1,104 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import QRCode from "qrcode.react";
+import DisplayDataModal from "../../components/Modal/QrModal";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "../../features/authSlice.js";
 
-export const LiveStock = ({ vaccineOptions }) => {
+export const LiveStock = () => {
   const [livestockData, setLivestockData] = useState([]);
   const [editMobId, setEditMobId] = useState(null);
+  const [modalData, setModalData] = useState(null);
+  const [qrCodeUrl, setQRCodeUrl] = useState(""); // State for QR code URL
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError, peternak } = useSelector((state) => state.auth);
 
-  const handleAddMob = () => {
-    const id = livestockData.length + 1;
-    const newMob = {
-      id,
-      animal: "",
-      family: "",
-      weight: "",
-      gender: "",
-      age: "",
-      vaccine: "",
-    };
-    setLivestockData([...livestockData, newMob]);
-    setEditMobId(id);
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/home");
+    }
+  }, [isError, navigate]);
+
+  useEffect(() => {
+    if (peternak) {
+      (async () => {
+        try {
+          const res = await axios.post("http://localhost:5000/gethewanTernak", {
+            idPeternak: peternak.idPeternak,
+          });
+          setLivestockData(res.data);
+        } catch (error) {
+          console.error("Error fetching livestock data:", error);
+        }
+      })();
+    }
+  }, [peternak]);
+
+  const handleAddMob = async () => {
+    try {
+      const newMob = {
+        jenisHewan: "",
+        famili: "",
+        berat: "",
+        jenisKelamin: "",
+        usia: "",
+        vaksin: "0",
+        idPeternak: peternak.idPeternak,
+        idLokasi: peternak.idLokasi,
+        waktuPerubahan: new Date().toISOString(),
+      };
+      const res = await axios.post("http://localhost:5000/hewanTernak", newMob);
+      setLivestockData([...livestockData, res.data]);
+      setEditMobId(res.data.idHewanTernak);
+
+      // Build QR code URL
+      const qrCodeUrl = `http://localhost:5000/hewanTernak/${res.data.idHewanTernak}`;
+
+      // Set QR code URL
+      setQRCodeUrl(qrCodeUrl);
+    } catch (error) {
+      console.error("Error adding new livestock:", error);
+    }
   };
 
-  const handleEditMob = (id) => {
-    setEditMobId(id);
-  };
+  const handleEditMob = (id) => setEditMobId(id);
 
-  const handleSaveMob = () => {
-    setEditMobId(null);
+  const handleSaveMob = async (id) => {
+    const mobToUpdate = livestockData.find((mob) => mob.idHewanTernak === id);
+    try {
+      await axios.patch(`http://localhost:5000/hewanTernak/${id}`, mobToUpdate);
+      setEditMobId(null);
+    } catch (error) {
+      console.error("Error saving livestock data:", error);
+    }
   };
 
   const handleInputChange = (id, key, value) => {
-    const updatedData = livestockData.map((mob) =>
-      mob.id === id ? { ...mob, [key]: value } : mob
+    setLivestockData((prevData) =>
+      prevData.map((mob) =>
+        mob.idHewanTernak === id ? { ...mob, [key]: value } : mob
+      )
     );
-    setLivestockData(updatedData);
   };
 
-  const handleDeleteMob = (id) => {
-    const updatedData = livestockData.filter((mob) => mob.id !== id);
-    setLivestockData(updatedData);
+  const handleDeleteMob = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/hewanTernak/${id}`);
+      setLivestockData((prevData) =>
+        prevData.filter((mob) => mob.idHewanTernak !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting livestock data:", error);
+    }
   };
+
+  const handleShowDataQr = (mob) => setModalData(mob);
 
   return (
     <div className="container mx-auto p-6">
@@ -56,82 +116,88 @@ export const LiveStock = ({ vaccineOptions }) => {
         onSaveMob={handleSaveMob}
         onInputChange={handleInputChange}
         onDeleteMob={handleDeleteMob}
-        vaccineOptions={vaccineOptions}
+        onShowDataQr={handleShowDataQr}
       />
+      {modalData && (
+        <DisplayDataModal
+          modalData={modalData}
+          setShowModal={() => setModalData(null)}
+        />
+      )}
+      {/* {qrCodeUrl && (
+        <div className="mt-4">
+          <h3 className="text-lg font-bold mb-2">QR Code for Newly Added Livestock</h3>
+          <QRCode size={128} value={qrCodeUrl} />
+        </div>
+      )} */}
     </div>
   );
 };
 
-export const LivestockTable = ({
+const LivestockTable = ({
   livestockData,
   editMobId,
   onEditMob,
   onSaveMob,
   onInputChange,
   onDeleteMob,
+  onShowDataQr,
 }) => {
   const familyData = {
-    Cow: ["Bovidae"],
-    Sheep: ["Bovidae"],
-    Goat: ["Bovidae"],
-    Chicken: ["Phasianidae"],
-    Buffalo: ["Bovidae"],
-    Pig: ["Suidae"],
-  };
-
-  const vaccineOptions = {
-    Cow: ["Anthrax", "Brucellosis", "IBR", "Leptospirosis", "BVD", "SE"],
-    Sheep: [
-      "Pasteurellosis",
-      "Chlamydia",
-      "Clostridium",
-      "Caseous Lymphadenitis",
-      "Anthelmintic",
-    ],
-    Goat: [
-      "Pasteurellosis",
-      "Chlamydia",
-      "Clostridium",
-      "Caseous Lymphadenitis",
-      "Anthelmintic",
-    ],
-    Chicken: [
-      "Newcastle Disease",
-      "Avian Influenza",
-      "Infectious Bronchitis",
-      "Marek's Disease",
-      "Gumboro",
-    ],
-    Buffalo: ["Anthrax", "FMD", "Enterotoxemia", "Blackleg", "Pasteurellosis"],
-    Pig: [
-      "Classical Swine Fever",
-      "PRRS",
-      "FMD",
-      "Swine Influenza",
-      "Erysipelas",
-    ],
+    Sapi: ["Bovidae"],
+    Domba: ["Bovidae"],
+    Kambing: ["Bovidae"],
+    Kuda: ["Equidae"],
+    Kerbau: ["Bovidae"],
+    Babi: ["Suidae"],
   };
 
   return (
     <div className="space-y-6">
       {livestockData.map(
-        ({ id, animal, family, weight, gender, age, vaccine }) => (
+        ({
+          idHewanTernak,
+          jenisHewan,
+          famili,
+          berat,
+          jenisKelamin,
+          usia,
+          vaksin,
+        }) => (
           <div
-            key={id}
-            className="border border-gray-400 p-4 rounded-md shadow-md flex"
+            key={idHewanTernak}
+            className="border border-gray-400 p-4 rounded-md shadow-md flex flex-col md:flex-row"
           >
-            <div className="w-1/4 flex justify-center items-center">
-              <QRCode value={`#${id}`} size={128} />
+            <div className="md:w-1/4 flex justify-center items-center mb-4 md:mb-0">
+              <QRCode
+                size={128}
+                value={`http://localhost:5000/hewanTernak/${idHewanTernak}`} // Set QR code value directly with URL
+                onClick={() =>
+                  onShowDataQr({
+                    idHewanTernak,
+                    jenisHewan,
+                    famili,
+                    berat,
+                    jenisKelamin,
+                    usia,
+                    vaksin,
+                  })
+                }
+              />
             </div>
-            <div className="w-3/4 pl-4">
-              <div className="flex mb-4">
-                <div className="w-1/2 pr-2">
+            <div className="md:w-3/4 md:pl-4">
+              <div className="flex flex-wrap md:flex-nowrap mb-4">
+                <div className="w-full md:w-1/2 pr-2">
                   <label className="block text-gray-700">Animal</label>
-                  {editMobId === id ? (
+                  {editMobId === idHewanTernak ? (
                     <select
-                      value={animal}
+                      value={jenisHewan}
                       onChange={(e) =>
-                        onInputChange(id, "animal", e.target.value)
+                        onInputChange(
+                          idHewanTernak,
+                          "jenisHewan",
+                          e.target.value
+                        )
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
@@ -143,122 +209,124 @@ export const LivestockTable = ({
                       ))}
                     </select>
                   ) : (
-                    <p>{animal}</p>
+                    <p>{jenisHewan}</p>
                   )}
                 </div>
-                <div className="w-1/2 pl-2">
+                <div className="w-full md:w-1/2 pl-2">
                   <label className="block text-gray-700">Family</label>
-                  {editMobId === id ? (
+                  {editMobId === idHewanTernak ? (
                     <select
-                      value={family}
+                      value={famili}
                       onChange={(e) =>
-                        onInputChange(id, "family", e.target.value)
+                        onInputChange(idHewanTernak, "famili", e.target.value)
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
                       <option value="">Select Family</option>
-                      {familyData[animal] &&
-                        familyData[animal].map((family, index) => (
+                      {familyData[jenisHewan] &&
+                        familyData[jenisHewan].map((family, index) => (
                           <option key={index} value={family}>
                             {family}
                           </option>
                         ))}
                     </select>
                   ) : (
-                    <p>{family}</p>
+                    <p>{famili}</p>
                   )}
                 </div>
               </div>
-              <div className="flex mb-4">
-                <div className="w-1/2 pr-2">
+              <div className="flex flex-wrap md:flex-nowrap mb-4">
+                <div className="w-full md:w-1/2 pr-2">
                   <label className="block text-gray-700">Weight (Kg)</label>
-                  {editMobId === id ? (
+                  {editMobId === idHewanTernak ? (
                     <input
                       type="number"
-                      value={weight}
+                      value={berat}
                       onChange={(e) =>
-                        onInputChange(id, "weight", e.target.value)
+                        onInputChange(idHewanTernak, "berat", e.target.value)
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     />
                   ) : (
-                    <p>{weight}</p>
+                    <p>{berat}</p>
                   )}
                 </div>
-                <div className="w-1/2 pl-2">
+                <div className="w-full md:w-1/2 pl-2">
                   <label className="block text-gray-700">Gender</label>
-                  {editMobId === id ? (
+                  {editMobId === idHewanTernak ? (
                     <select
-                      value={gender}
+                      value={jenisKelamin}
                       onChange={(e) =>
-                        onInputChange(id, "gender", e.target.value)
+                        onInputChange(
+                          idHewanTernak,
+                          "jenisKelamin",
+                          e.target.value
+                        )
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
                       <option value="">Select Gender</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
+                      <option value="Jantan">Jantan</option>
+                      <option value="Betina">Betina</option>
                     </select>
                   ) : (
-                    <p>{gender}</p>
+                    <p>{jenisKelamin}</p>
                   )}
                 </div>
               </div>
-              <div className="flex mb-4">
-                <div className="w-1/2 pr-2">
-                  <label className="block text-gray-700">Age (Month)</label>
-                  {editMobId === id ? (
+              <div className="flex flex-wrap md:flex-nowrap mb-4">
+                <div className="w-full md:w-1/2 pr-2">
+                  <label className="block text-gray-700">Age (Tahun)</label>
+                  {editMobId === idHewanTernak ? (
                     <input
                       type="number"
-                      value={age}
-                      onChange={(e) => onInputChange(id, "age", e.target.value)}
+                      value={usia}
+                      onChange={(e) =>
+                        onInputChange(idHewanTernak, "usia", e.target.value)
+                      }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     />
                   ) : (
-                    <p>{age}</p>
+                    <p>{usia}</p>
                   )}
                 </div>
-                <div className="w-1/2 pl-2">
-                  <label className="block text-gray-700">Vaccine</label>
-                  {editMobId === id ? (
+                <div className="w-full md:w-1/2 pl-2">
+                  <label className="block text-gray-700">Vaksin</label>
+                  {editMobId === idHewanTernak ? (
                     <select
-                      value={vaccine}
+                      value={vaksin}
                       onChange={(e) =>
-                        onInputChange(id, "vaccine", e.target.value)
+                        onInputChange(idHewanTernak, "vaksin", e.target.value)
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
-                      <option value="">Select Vaccine</option>
-                      {vaccineOptions &&
-                        vaccineOptions[animal]?.map((vaccine, index) => (
-                          <option key={index} value={vaccine}>
-                            {vaccine}
-                          </option>
-                        ))}
+                      <option value="0">Pilih Status Vaksin</option>
+                      <option value="1">Sudah</option>
+                      <option value="0">Belum</option>
                     </select>
                   ) : (
-                    <p>{vaccine}</p>
+                    <p>{vaksin ? "Sudah" : "Belum"}</p>
                   )}
                 </div>
               </div>
               <div className="flex justify-between">
-                {editMobId === id ? (
+                {editMobId === idHewanTernak ? (
                   <button
-                    onClick={() => onSaveMob(id)}
+                    onClick={() => onSaveMob(idHewanTernak)}
                     className="px-3 py-2 bg-green-500 hover:bg-green-600 rounded-md text-white"
                   >
                     Save
                   </button>
                 ) : (
                   <button
-                    onClick={() => onEditMob(id)}
+                    onClick={() => onEditMob(idHewanTernak)}
                     className="px-3 py-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white"
                   >
                     Edit
                   </button>
                 )}
                 <button
-                  onClick={() => onDeleteMob(id)}
+                  onClick={() => onDeleteMob(idHewanTernak)}
                   className="px-3 py-2 bg-red-500 hover:bg-red-600 rounded-md text-white"
                 >
                   Delete

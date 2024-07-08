@@ -18,7 +18,7 @@ const Peternak = db.define(
       allowNull: true,
     },
     passwordPeternak: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING(255),
       allowNull: true,
     },
     namaPeternak: {

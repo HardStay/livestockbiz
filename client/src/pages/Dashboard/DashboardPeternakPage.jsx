@@ -2,18 +2,36 @@ import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardBody } from "@material-tailwind/react";
 import Chart from "react-apexcharts";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getMe } from "../../features/authSlice.js";
 
 function DashboardDataPeternak() {
   const [tahun, setTahun] = useState("2024");
   const [jenisHewan, setJenisHewan] = useState("Sapi");
   const [chartData, setChartData] = useState([]);
   const [dataHewan, setDataHewan] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isError, peternak } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isError) {
+      navigate("/home");
+    }
+  }, [isError, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/hewanTernakByTahun/${tahun}`
+        const idPeternak = peternak.idPeternak;
+        const res = await axios.post(
+          "http://localhost:5000/hewanTernakByTahunAndId",
+          { tahun, idPeternak }
         );
         setDataHewan(res.data);
       } catch (err) {
@@ -22,14 +40,15 @@ function DashboardDataPeternak() {
     };
 
     fetchData();
-  }, [tahun]);
+  }, [tahun, peternak]);
 
   useEffect(() => {
     const handleData = async () => {
       try {
+        const idPeternak = peternak.idPeternak;
         const res = await axios.post(
-          "http://localhost:5000/hewanTernakByTahunAndJenis",
-          { tahun, jenisHewan }
+          "http://localhost:5000/hewanTernakByTahunAndJenisId",
+          { tahun, jenisHewan, idPeternak }
         );
         setChartData(res.data);
       } catch (err) {
@@ -38,7 +57,7 @@ function DashboardDataPeternak() {
     };
 
     handleData();
-  }, [tahun, jenisHewan]);
+  }, [tahun, jenisHewan, peternak]);
 
   const handleYearChange = (event) => {
     setTahun(event.target.value);
@@ -48,7 +67,6 @@ function DashboardDataPeternak() {
     setJenisHewan(event.target.value);
   };
 
-  // Mengelompokkan data berdasarkan bulan dan jenis hewan
   const dataDisplay = chartData.reduce((acc, item) => {
     const bulan = item.Bulan;
     if (!acc[bulan]) {
@@ -60,7 +78,6 @@ function DashboardDataPeternak() {
     return acc;
   }, {});
 
-  // Mengonversi data untuk digunakan dalam chart
   const seriesData = Object.keys(dataDisplay).map((bulan) => ({
     x: bulan,
     y: Object.values(dataDisplay[bulan]).reduce((a, b) => a + b, 0),
@@ -138,7 +155,7 @@ function DashboardDataPeternak() {
         shared: true,
         intersect: false,
         marker: {
-          show: false, // Menonaktifkan marker tooltip
+          show: false,
         },
       },
       legend: {
@@ -166,18 +183,16 @@ function DashboardDataPeternak() {
     { imgSrc: "/assets/noun-sheep-6186377.png", type: "Domba" },
     { imgSrc: "/assets/noun-buffalo-4576873.png", type: "Kerbau" },
     { imgSrc: "/assets/noun-goat-6694931.png", type: "Kambing" },
-    { imgSrc: "/assets/noun-horse-6722214.png", type: "Kuda"},
+    { imgSrc: "/assets/noun-horse-6722214.png", type: "Kuda" },
   ];
 
   return (
     <div className="bg-gray-200 h-full">
-      <div className="flex">
-        <div className="text-2xl font-medium text-gray-900 px-4 pt-4 w-full">
-          Livestocks
-        </div>
-        <div className="float-right mr-4">
+      <div className="flex flex-wrap justify-between items-center px-4 pt-4">
+        <div className="text-2xl font-medium text-gray-900">Livestocks</div>
+        <div>
           <select
-            className="py-2 px-3 border rounded-md flex mx-auto text-gray-700"
+            className="py-2 px-3 border rounded-md text-gray-700"
             value={tahun}
             onChange={handleYearChange}
           >
@@ -189,24 +204,19 @@ function DashboardDataPeternak() {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
         {livestockData.map((livestock, index) => (
           <div
             key={index}
-            className="grid grid-cols-2 w-full rounded-md h-28 bg-white"
+            className="flex flex-col items-center justify-center rounded-md h-28 bg-white p-2"
           >
-            <div className="flex items-center justify-center">
-              <img
-                src={livestock.imgSrc}
-                alt=""
-                className="w-[70px] h-[70px]"
-              />
-            </div>
-            <div className="flex items-center justify-center">
-              <label className="text-gray-900 font-semibold">
-              {dataHewan.length > 0 ? dataHewan.find(item => item.jenisHewan === livestock.type)?.JumlahHewan || 0 : 0}
-              </label>
-            </div>
+            <img src={livestock.imgSrc} alt="" className="w-[70px] h-[70px]" />
+            <label className="text-gray-900 font-semibold mt-2">
+              {dataHewan.length > 0
+                ? dataHewan.find((item) => item.jenisHewan === livestock.type)
+                    ?.JumlahHewan || 0
+                : 0}
+            </label>
           </div>
         ))}
       </div>
@@ -222,9 +232,9 @@ function DashboardDataPeternak() {
               <h4 className="text-xl font-semibold flex items-center justify-center h-fit">
                 Grafik Data Hewan Per Bulan
               </h4>
-              <div className="float-right mr-4">
+              <div>
                 <select
-                  className="py-2 px-3 border rounded-md flex mx-auto text-gray-700"
+                  className="py-2 px-3 border rounded-md text-gray-700"
                   value={jenisHewan}
                   onChange={handleJenisHewanChange}
                 >
@@ -248,10 +258,7 @@ function DashboardDataPeternak() {
           </CardBody>
         </Card>
       </div>
-      <hr
-        className="border-2 mb-12 mt-4 z-40"
-        style={{ color: "#333", zIndex: "999" }}
-      />
+      <hr className="border-2 mb-12 mt-4" style={{ color: "#333" }} />
     </div>
   );
 }

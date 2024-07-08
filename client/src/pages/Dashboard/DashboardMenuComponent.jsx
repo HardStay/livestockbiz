@@ -1,6 +1,5 @@
 import { Tabs, TabsBody, TabsHeader, Tab, TabPanel } from '@material-tailwind/react'
 import React from 'react'
-import { DashboardTabs } from '../../components/content/DashboardTabsComponent.jsx';
 
 export function DashboardMenu() {
     const [activeTab, setActiveTab] = React.useState("dashboard");
@@ -10,11 +9,11 @@ export function DashboardMenu() {
             value: "dashboard",
 
         },
-        {
-            label: "Biosecurity",
-            value: "biosecurity",
+        // {
+        //     label: "Biosecurity",
+        //     value: "biosecurity",
 
-        },
+        // },
     ];
     return (
         <>
@@ -43,7 +42,7 @@ export function DashboardMenu() {
                         <TabPanel key={value} value={value} className="p-0">
 
                             {activeTab === "dashboard"}
-                            {activeTab === "biosecurity" && value === "biosecurity" && <BiosecurityTabs />}
+                            {/* {activeTab === "biosecurity" && value === "biosecurity" && <BiosecurityTabs />} */}
 
                         </TabPanel>
                     ))}

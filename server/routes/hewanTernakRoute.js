@@ -1,15 +1,17 @@
 import express from "express";
-import { getHewanTernak, getHewanTernakByProvinsi, getHewanTernakByTahunAndJenis, getHewanTernakByTahun, getHewanTernakById, createHewanTernak, updateHewanTernak, deleteHewanTernak } from "../controllers/hewanTernakController.js";
-
+import { getHewanTernak, getHewanTernakByProvinsi, getHewanTernakByTahunAndJenis, getHewanTernakByTahunAndJenisId, getHewanTernakByTahun, getHewanTernakByTahunAndId, getHewanTernakById, createHewanTernak, updateHewanTernak, deleteHewanTernak } from "../controllers/hewanTernakController.js";
+import { verifyPeternak } from "../middleware/authUser.js";
 const router = express.Router();
 
-router.get("/hewanTernak", getHewanTernak);
 router.get("/hewanTernak/:id", getHewanTernakById);
 router.get("/hewanTernakByTahun/:tahun", getHewanTernakByTahun);
-router.post("/hewanTernak", createHewanTernak);
+router.post("/gethewanTernak", verifyPeternak, getHewanTernak);
+router.post("/hewanTernakByTahunAndId", getHewanTernakByTahunAndId);
+router.post("/hewanTernak", verifyPeternak, createHewanTernak);
 router.post("/hewanTernakByProvinsi", getHewanTernakByProvinsi);
 router.post("/hewanTernakByTahunAndJenis", getHewanTernakByTahunAndJenis);
-router.patch("/hewanTernak/:id", updateHewanTernak);
-router.delete("/hewanTernak/:id", deleteHewanTernak);
+router.post("/hewanTernakByTahunAndJenisId", getHewanTernakByTahunAndJenisId);
+router.patch("/hewanTernak/:id", verifyPeternak ,updateHewanTernak);
+router.delete("/hewanTernak/:id", verifyPeternak, deleteHewanTernak);
 
 export default router;

@@ -16,7 +16,7 @@ export const getAi = async (req, res) => {
       const { jenisHewan } = req.body;
       const penjualan = await getPenjualanByJenisHewan(jenisHewan);
       prompt.push(
-        "Generate a prediction of livestock prices based on recorded sales like the following:"
+        `Generate a prediction of ${jenisHewan} prices based on recorded sales like the following:`
       );
       prompt.push(
         penjualan
@@ -24,7 +24,7 @@ export const getAi = async (req, res) => {
           .join("\n")
       );
       prompt.push(
-        `Give me a prediction of livestock prices for ${tanggal}, give the lower limit price and final limit price and translate all your answer to Bahasa Indonesia`
+        `Give me a prediction of ${jenisHewan} prices for ${tanggal}, give the prediction price, lower limit price and final limit price and give all your answer to Bahasa Indonesia`
       );
     } else if (selectedAi === "PrediksiPenjualanHarian") {
       const jumlahHewan = await getJumlahHewanTerjual();
@@ -41,7 +41,7 @@ export const getAi = async (req, res) => {
           .join("\n")
       );
       prompt.push(
-        `Give me a sales prediction of livestock for ${tanggal} and translate all your answer to Bahasa Indonesia`
+        `Give me a sales prediction of livestock for ${tanggal} and give all your answer to Bahasa Indonesia`
       );
     }
     console.log(`Prompt received: ${prompt.join("\n")}`);
@@ -52,7 +52,7 @@ export const getAi = async (req, res) => {
           content: prompt.join("\n"),
         },
       ],
-      model: "llama3-70b-8192",
+      model: "mixtral-8x7b-32768",
       temperature: 1,
       max_tokens: 2048,
       top_p: 1,

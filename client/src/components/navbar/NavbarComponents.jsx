@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import '../../components/navbar/Navbar.css';
 import { LoginCard } from "../Modal/LoginModalComponent";
-// import { Link } from "react-router-dom";
 import {
     Navbar,
     Collapse,
@@ -209,14 +208,6 @@ export function NavbarLandingPage() {
         setLoginModalOpen(false);
     };
 
-    // const openRegisterModal = () => {
-    //     setRegisterModalOpen(true);
-    // };
-
-    // const closeRegisterModal = () => {
-    //     setRegisterModalOpen(false);
-    // };
-
 
     return (
         <div className="navbar">
@@ -227,11 +218,7 @@ export function NavbarLandingPage() {
                         <NavList />
                     </div>
                     <div className="hidden gap-2 lg:flex">
-                        <button className="px-3 py-1  text-white text-sm rounded-md hover:bg-gray-200 hover:text-gray-900 transition duration-200">
-                            Sign Up
-                        </button>
-                        {/* Menggunakan openLoginModal untuk menampilkan LoginCard */}
-                        <button className="px-3 py-1 font-medium text-white text-sm  bg-green-500 rounded-md hover:bg-green-600 transition duration-200" onClick={openLoginModal}>
+                        <button className="px-4 py-2 font-medium text-white text-sm  bg-green-500 rounded-md hover:bg-green-600 transition duration-200" onClick={openLoginModal}>
                             Sign In
                         </button>
                     </div>
@@ -251,11 +238,7 @@ export function NavbarLandingPage() {
                 <Collapse open={openNav}>
                     <NavList />
                     <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-                        <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
-                            Sign Up
-                        </Button>
-                        {/* Menggunakan openLoginModal untuk menampilkan LoginCard */}
-                        <button className="px-3 py-2 bg-green-500 hover:bg-green-600 text-white" onClick={openLoginModal}>Sign In</button>
+                        <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white" onClick={openLoginModal}>Sign In</button>
                     </div>
                 </Collapse>
             </Navbar>

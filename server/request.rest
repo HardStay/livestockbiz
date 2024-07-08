@@ -1,32 +1,102 @@
 GET http://localhost:5000/penjualanHewanTernakPerBulan/2024
 ###
-GET http://localhost:3000/dinas/1
+GET http://localhost:5000/peternak/51
 
 ###
-POST http://localhost:3000/dinas
+GET http://localhost:5000/hewanTernak/403
+
+###
+POST http://localhost:5000/peternak
 Content-Type: application/json
 
 {
-    "usernameDinas": "DinasKesehatan",
-    "passwordDinas": "DinasKesehatan",
-    "namaDinas": "Dinas Kesehatan",
-    "alamatDinas": "Jl. Kesehatan No. 1",
-    "nomorTelepon": "021-87654321"
+    "username": "Fath",
+    "password": "Admin#1234",
+    "namaLengkap": "Yusava",
+    "nomorTelepon": "08548456384",
+    "idLokasi": 50
 }
 
 ###
-PATCH http://localhost:3000/dinas/1
+PATCH http://localhost:5000/peternak/50
 Content-Type: application/json
 
 {
-    "usernameDinas": "DinasHewan",
-    "passwordDinas": "DinasHewan",
+    "username": "zaki50",
+    "password": "password2345",
+    "namaLengkap": "Zaki Mubarok",
+    "nomorTelepon": "085789012358"
+}
+
+###
+PATCH http://localhost:5000/dinas/1
+Content-Type: application/json
+
+{
+    "username": "DinasHewan",
+    "password": "dinashewan123",
     "namaDinas": "Dinas Hewan",
-    "alamatDinas": "Jl. Hewan No. 1",
-    "nomorTelepon": "021-12345678"
+    "alamat": "Jl. Hewan No. 1",
+    "nomorTelepon": "02112345678"
 }
 
 ###
-DELETE http://localhost:3000/dinas/2
+DELETE http://localhost:5000/peternak/53
 
+###
+POST http://localhost:5000/loginDinas
+Content-Type: application/json
 
+{
+    "username": "DinasHewan",
+    "password": "dinashewan123"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "username": "zaki50",
+    "password": "password2345"
+}
+
+###
+GET http://localhost:5000/me
+
+###
+DELETE http://localhost:5000/logout
+
+###
+POST http://localhost:5000/hewanTernak
+Content-Type: application/json
+
+{
+    "jenisHewan": "Kerbau",
+    "famili": "Bovidae",
+    "berat": "400",
+    "jenisKelamin": "Jantan",
+    "usia": "4",
+    "vaksin": "1",
+    "idPeternak": "50",
+    "idLokasi": "50",
+    "waktuPerubahan": "2024-07-08 08:53:45"
+}
+
+###
+PATCH http://localhost:5000/hewanTernak/405
+Content-Type: application/json
+
+{
+    "jenisHewan": "Kuda",
+    "famili": "Equidae",
+    "berat": "400",
+    "jenisKelamin": "Jantan",
+    "usia": "4",
+    "vaksin": "1",
+    "idPeternak": "50",
+    "idLokasi": "50",
+    "waktuPerubahan": "2024-07-08 08:53:45"
+}
+###
+DELETE http://localhost:5000/hewanTernak/405
