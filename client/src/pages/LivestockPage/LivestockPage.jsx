@@ -29,9 +29,12 @@ export const LiveStock = () => {
     if (peternak) {
       (async () => {
         try {
-          const res = await axios.post("http://localhost:5000/gethewanTernak", {
-            idPeternak: peternak.idPeternak,
-          });
+          const res = await axios.post(
+            "https://localhost:5000/gethewanTernak",
+            {
+              idPeternak: peternak.idPeternak,
+            }
+          );
           setLivestockData(res.data);
         } catch (error) {
           console.error("Error fetching livestock data:", error);
@@ -53,12 +56,15 @@ export const LiveStock = () => {
         idLokasi: peternak.idLokasi,
         waktuPerubahan: new Date().toISOString(),
       };
-      const res = await axios.post("http://localhost:5000/hewanTernak", newMob);
-      setLivestockData([...livestockData, res.data]);
+      const res = await axios.post(
+        "https://localhost:5000/hewanTernak",
+        newMob
+      );
+      setLivestockData([res.data, ...livestockData]);
       setEditMobId(res.data.idHewanTernak);
 
       // Build QR code URL
-      const qrCodeUrl = `http://localhost:5000/hewanTernak/${res.data.idHewanTernak}`;
+      const qrCodeUrl = `https://localhost:5000/hewanTernak/${res.data.idHewanTernak}`;
 
       // Set QR code URL
       setQRCodeUrl(qrCodeUrl);
@@ -72,7 +78,10 @@ export const LiveStock = () => {
   const handleSaveMob = async (id) => {
     const mobToUpdate = livestockData.find((mob) => mob.idHewanTernak === id);
     try {
-      await axios.patch(`http://localhost:5000/hewanTernak/${id}`, mobToUpdate);
+      await axios.patch(
+        `https://localhost:5000/hewanTernak/${id}`,
+        mobToUpdate
+      );
       setEditMobId(null);
     } catch (error) {
       console.error("Error saving livestock data:", error);
@@ -89,7 +98,9 @@ export const LiveStock = () => {
 
   const handleDeleteMob = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/hewanTernak/${id}`);
+      await axios.delete(
+        `https://localhost:5000/hewanTernak/${id}`
+      );
       setLivestockData((prevData) =>
         prevData.filter((mob) => mob.idHewanTernak !== id)
       );
@@ -171,7 +182,7 @@ const LivestockTable = ({
             <div className="md:w-1/4 flex justify-center items-center mb-4 md:mb-0">
               <QRCode
                 size={128}
-                value={`http://localhost:3000/displayQR/${idHewanTernak}`} // Set QR code value directly with URL
+                value={`https://localhost:3000/displayQR/${idHewanTernak}`} // ini
                 onClick={() =>
                   onShowDataQr({
                     idHewanTernak,
@@ -300,12 +311,11 @@ const LivestockTable = ({
                       }
                       className="bg-gray-200 px-2 py-1 rounded-md w-full"
                     >
-                      <option value="0">Pilih Status Vaksin</option>
                       <option value="1">Sudah</option>
                       <option value="0">Belum</option>
                     </select>
                   ) : (
-                    <p>{vaksin ? "Sudah" : "Belum"}</p>
+                    <p>{vaksin === "1" ? "Sudah" : "Belum"}</p>
                   )}
                 </div>
               </div>

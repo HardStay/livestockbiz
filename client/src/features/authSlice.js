@@ -14,10 +14,11 @@ export const LoginPeternak = createAsyncThunk(
   "peternak/LoginPeternak",
   async (peternak, thunkAPI) => {
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post("https://localhost:5000/login", {
         username: peternak.username,
         password: peternak.password,
       });
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -32,7 +33,7 @@ export const LoginDinas = createAsyncThunk(
   "dinas/LoginDinas",
   async (dinas, thunkAPI) => {
     try {
-      const response = await axios.post("http://localhost:5000/loginDinas", {
+      const response = await axios.post("https://localhost:5000/loginDinas", {
         username: dinas.username,
         password: dinas.password,
       });
@@ -48,7 +49,8 @@ export const LoginDinas = createAsyncThunk(
 
 export const getMe = createAsyncThunk("peternak/getMe", async (_, thunkAPI) => {
   try {
-    const response = await axios.get("http://localhost:5000/me");
+    const response = await axios.get("https://localhost:5000/me");
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -62,7 +64,7 @@ export const getMeDinas = createAsyncThunk(
   "dinas/getMeDinas",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:5000/meDinas");
+      const response = await axios.get("https://localhost:5000/meDinas");
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -74,7 +76,7 @@ export const getMeDinas = createAsyncThunk(
 );
 
 export const Logout = createAsyncThunk("peternak/logout", async () => {
-  await axios.delete("http://localhost:5000/logout");
+  await axios.delete("https://localhost:5000/logout");
 });
 
 export const authSlice = createSlice({

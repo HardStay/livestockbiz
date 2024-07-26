@@ -13,7 +13,7 @@ function DashboardDataGovernment() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/hewanTernakByTahun/${tahun}`
+          `https://localhost:5000/hewanTernakByTahun/${tahun}`
         );
         setDataHewan(res.data);
       } catch (err) {
@@ -28,7 +28,7 @@ function DashboardDataGovernment() {
     const handleData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5000/hewanTernakByTahunAndJenis",
+          "https://localhost:5000/hewanTernakByTahunAndJenis",
           { tahun, jenisHewan }
         );
         setChartData(res.data);

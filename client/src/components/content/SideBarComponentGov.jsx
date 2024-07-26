@@ -1,127 +1,142 @@
-
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-    Card,
-    Typography,
-    List,
-    ListItem,
-    ListItemPrefix,
-    ListItemSuffix,
-    Chip,
-    Accordion,
-    AccordionHeader,
-    AccordionBody,
-    Alert,
+  Card,
+  Typography,
+  List,
+  ListItem,
+  ListItemPrefix,
+  ListItemSuffix,
+  Chip,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+  Alert,
 } from "@material-tailwind/react";
 import {
-    PresentationChartBarIcon,
-    ShoppingBagIcon,
-    UserCircleIcon,
-    Cog6ToothIcon,
-    InboxIcon,
-    PowerIcon,
+  PresentationChartBarIcon,
+  ShoppingBagIcon,
+  UserCircleIcon,
+  Cog6ToothIcon,
+  InboxIcon,
+  PowerIcon,
 } from "@heroicons/react/24/solid";
 import {
-    ChevronRightIcon,
-    ChevronDownIcon,
-    CubeTransparentIcon,
+  ChevronRightIcon,
+  ChevronDownIcon,
+  CubeTransparentIcon,
 } from "@heroicons/react/24/outline";
 import LandingPage from "../../pages/LandingPage/LandingPage";
+import { useDispatch, useSelector } from "react-redux";
+import { Logout, reset } from "../../features/authSlice";
 
 export function SidebarWithLogoGov({ handleTabChange }) {
-    const [open, setOpen] = React.useState(0);
-    const [openAlert, setOpenAlert] = React.useState(true);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [open, setOpen] = React.useState(0);
+  const [openAlert, setOpenAlert] = React.useState(true);
 
-    const handleOpen = (value) => {
-        setOpen(open === value ? 0 : value);
-    };
+  const logout = () => {
+    dispatch(Logout());
+    dispatch(reset());
+    navigate("/home");
+  };
 
-    const handleClickLivestock = () => {
-        handleTabChange("livestockGov");
-    };
+  const handleOpen = (value) => {
+    setOpen(open === value ? 0 : value);
+  };
 
-    const handleClickSellRecords = () => {
-        handleTabChange("sellrecordsGov");
-    };
+  const handleClickLivestock = () => {
+    handleTabChange("livestockGov");
+  };
 
-    const handleClickDashboard = (tab) => {
-        handleTabChange("dashboardData");
-    }
+  const handleClickSellRecords = () => {
+    handleTabChange("sellrecordsGov");
+  };
 
-    const handleClickProfile = (tab) => {
-        handleTabChange("profileGov");
-    }
+  const handleClickDashboard = (tab) => {
+    handleTabChange("dashboardData");
+  };
 
-    const handleClickBreederData = (tab) => {
-        handleTabChange("breederData");
-    }
+  const handleClickProfile = (tab) => {
+    handleTabChange("profileGov");
+  };
 
-    const handleClickMapData = (tab) => {
-        handleTabChange("mapData");
-    }
+  const handleClickBreederData = (tab) => {
+    handleTabChange("breederData");
+  };
 
-    return (
-        <Card className="sidebar h-screen w-full max-w-[20rem] rounded-none" style={{ boxShadow: 'none' }}>
-            <div className="mb-2 flex items-center gap-4 p-4">
-                <img src="/assets/logo.png" alt="brand" className="h-12 w-12" />
-            </div>
-            <List>
-                <Accordion
-                    open={open === 1}
-                >
-                    <ListItem className="p-0" selected={open === 1} onClick={handleClickDashboard}>
-                        <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
-                            <ListItemPrefix>
-                                <PresentationChartBarIcon className="h-5 w-5" />
-                            </ListItemPrefix>
-                            <Typography color="blue-gray" className="mr-auto font-normal">
-                                Dashboard
-                            </Typography>
-                        </AccordionHeader>
-                    </ListItem>
-                </Accordion>
+  const handleClickMapData = (tab) => {
+    handleTabChange("mapData");
+  };
 
+  return (
+    <Card
+      className="sidebar h-screen w-full max-w-[20rem] rounded-none"
+      style={{ boxShadow: "none" }}
+    >
+      <div className="mb-2 flex items-center gap-4 p-4">
+        <img src="/assets/logo.png" alt="brand" className="h-12 w-12" />
+      </div>
+      <List>
+        <Accordion open={open === 1}>
+          <ListItem
+            className="p-0"
+            selected={open === 1}
+            onClick={handleClickDashboard}
+          >
+            <AccordionHeader
+              onClick={() => handleOpen(1)}
+              className="border-b-0 p-3"
+            >
+              <ListItemPrefix>
+                <PresentationChartBarIcon className="h-5 w-5" />
+              </ListItemPrefix>
+              <Typography color="blue-gray" className="mr-auto font-normal">
+                Dashboard
+              </Typography>
+            </AccordionHeader>
+          </ListItem>
+        </Accordion>
 
-
-                <ListItem onClick={handleClickSellRecords}>
-                    <ListItemPrefix>
-                        <InboxIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Sell Records
-
-                </ListItem>
-                <ListItem onClick={handleClickProfile}>
-                    <ListItemPrefix>
-                        <UserCircleIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Profile
-                </ListItem>
-                <ListItem onClick={handleClickBreederData}>
-                    <ListItemPrefix>
-                        <UserCircleIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Breeder Data
-                </ListItem>
-                <ListItem onClick={handleClickMapData}>
-                    <ListItemPrefix>
-                        <UserCircleIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Animal Distribution Map
-                </ListItem>
-                <ListItem>
-                    <ListItemPrefix>
-                        <Cog6ToothIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    Settings
-                </ListItem>
-                <ListItem>
-                    <ListItemPrefix>
-                        <PowerIcon className="h-5 w-5" />
-                    </ListItemPrefix>
-                    <Link to='/home'>Log Out</Link>
-                </ListItem>
-            </List>
-        </Card>
-    );
+        <ListItem onClick={handleClickSellRecords}>
+          <ListItemPrefix>
+            <InboxIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Sell Records
+        </ListItem>
+        <ListItem onClick={handleClickProfile}>
+          <ListItemPrefix>
+            <UserCircleIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Profile
+        </ListItem>
+        <ListItem onClick={handleClickBreederData}>
+          <ListItemPrefix>
+            <UserCircleIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Breeder Data
+        </ListItem>
+        <ListItem onClick={handleClickMapData}>
+          <ListItemPrefix>
+            <UserCircleIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Animal Distribution Map
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <Cog6ToothIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          Settings
+        </ListItem>
+        <ListItem>
+          <ListItemPrefix>
+            <PowerIcon className="h-5 w-5" />
+          </ListItemPrefix>
+          <button onClick={logout}>Log Out</button>
+          {/* <Link to='/home'>Log Out</Link> */}
+        </ListItem>
+      </List>
+    </Card>
+  );
 }

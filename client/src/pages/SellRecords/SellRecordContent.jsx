@@ -13,7 +13,7 @@ const SellRecordsTable = () => {
       weight: "",
       gender: "",
       age: "",
-      vaccine: "",
+      vaccine: "0",
       sellPrice: "",
       status: "Belum Terjual",
     };
@@ -100,45 +100,12 @@ const SellDataCard = ({
   } = mob;
 
   const familyData = {
-    Cow: ["Bovidae"],
-    Sheep: ["Bovidae"],
-    Goat: ["Bovidae"],
-    Chicken: ["Phasianidae"],
-    Buffalo: ["Bovidae"],
-    Pig: ["Suidae"],
-  };
-
-  const vaccineOptions = {
-    Cow: ["Anthrax", "Brucellosis", "IBR", "Leptospirosis", "BVD", "SE"],
-    Sheep: [
-      "Pasteurellosis",
-      "Chlamydia",
-      "Clostridium",
-      "Caseous Lymphadenitis",
-      "Anthelmintic",
-    ],
-    Goat: [
-      "Pasteurellosis",
-      "Chlamydia",
-      "Clostridium",
-      "Caseous Lymphadenitis",
-      "Anthelmintic",
-    ],
-    Chicken: [
-      "Newcastle Disease",
-      "Avian Influenza",
-      "Infectious Bronchitis",
-      "Marek's Disease",
-      "Gumboro",
-    ],
-    Buffalo: ["Anthrax", "FMD", "Enterotoxemia", "Blackleg", "Pasteurellosis"],
-    Pig: [
-      "Classical Swine Fever",
-      "PRRS",
-      "FMD",
-      "Swine Influenza",
-      "Erysipelas",
-    ],
+    Sapi: ["Bovidae"],
+    Domba: ["Bovidae"],
+    Kambing: ["Bovidae"],
+    Kuda: ["Phasianidae"],
+    Kerbau: ["Bovidae"],
+    Babi: ["Suidae"],
   };
 
   return (
@@ -146,13 +113,13 @@ const SellDataCard = ({
       <div className="w-full sm:w-3/4 pl-4">
         {status === "Terjual" && (
           <p className="text-sm text-gray-500 mb-2">
-            Sell Date: {new Date().toLocaleDateString()}
+            Tanggal Jual: {new Date().toLocaleDateString()}
           </p>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Animal
+              Hewan
             </label>
             {editMobId === id ? (
               <select
@@ -160,7 +127,7 @@ const SellDataCard = ({
                 onChange={(e) => onInputChange(id, "animal", e.target.value)}
                 className="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               >
-                <option value="">Select Animal</option>
+                <option value="">Pilih Hewan</option>
                 {Object.keys(familyData).map((animal, index) => (
                   <option key={index} value={animal}>
                     {animal}
@@ -173,7 +140,7 @@ const SellDataCard = ({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Family
+              Famili
             </label>
             {editMobId === id ? (
               <select
@@ -181,7 +148,7 @@ const SellDataCard = ({
                 onChange={(e) => onInputChange(id, "family", e.target.value)}
                 className="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               >
-                <option value="">Select Family</option>
+                <option value="">Pilih Famili</option>
                 {familyData[animal] &&
                   familyData[animal].map((family, index) => (
                     <option key={index} value={family}>
@@ -195,7 +162,7 @@ const SellDataCard = ({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Weight (Kg)
+              Berat (Kg)
             </label>
             {editMobId === id ? (
               <input
@@ -210,7 +177,7 @@ const SellDataCard = ({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Gender
+              Jenis Kelamin
             </label>
             {editMobId === id ? (
               <select
@@ -218,7 +185,7 @@ const SellDataCard = ({
                 onChange={(e) => onInputChange(id, "gender", e.target.value)}
                 className="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               >
-                <option value="">Select Gender</option>
+                <option value="">Pilih Jenis Kelamin</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
@@ -228,7 +195,7 @@ const SellDataCard = ({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Age (Month)
+              Umur (Tahun)
             </label>
             {editMobId === id ? (
               <input
@@ -243,7 +210,7 @@ const SellDataCard = ({
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Vaccine
+              Vaksin
             </label>
             {editMobId === id ? (
               <select
@@ -251,21 +218,16 @@ const SellDataCard = ({
                 onChange={(e) => onInputChange(id, "vaccine", e.target.value)}
                 className="mt-1 block w-full pl-3 pr-10 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
               >
-                <option value="">Select Vaccine</option>
-                {vaccineOptions[animal] &&
-                  vaccineOptions[animal].map((vaccine, index) => (
-                    <option key={index} value={vaccine}>
-                      {vaccine}
-                    </option>
-                  ))}
+                <option value="1">Sudah</option>
+                <option value="0">Belum</option>
               </select>
             ) : (
-              <p>{vaccine}</p>
+              <p>{vaccine === "1" ? "Sudah" : "Belum"}</p>
             )}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Sell Price
+              Harga Jual
             </label>
             {editMobId === id ? (
               <input

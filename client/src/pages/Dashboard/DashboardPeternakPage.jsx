@@ -30,7 +30,7 @@ function DashboardDataPeternak() {
       try {
         const idPeternak = peternak.idPeternak;
         const res = await axios.post(
-          "http://localhost:5000/hewanTernakByTahunAndId",
+          "https://localhost:5000/hewanTernakByTahunAndId",
           { tahun, idPeternak }
         );
         setDataHewan(res.data);
@@ -47,7 +47,7 @@ function DashboardDataPeternak() {
       try {
         const idPeternak = peternak.idPeternak;
         const res = await axios.post(
-          "http://localhost:5000/hewanTernakByTahunAndJenisId",
+          "https://localhost:5000/hewanTernakByTahunAndJenisId",
           { tahun, jenisHewan, idPeternak }
         );
         setChartData(res.data);

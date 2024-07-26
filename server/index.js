@@ -18,7 +18,7 @@ const app = express();
 const sessionStore = new SequelizeStore(session.Store);
 
 const store = new sessionStore({
-    db: db
+  db: db,
 });
 
 app.use(
@@ -30,12 +30,15 @@ app.use(
     cookie: {
       secure: "auto",
     },
+    sameSite: "none",
   })
 );
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000", //ini
+    // origin: ["http://localhost:3000", "https://fly-beloved-yak.ngrok-free.app"], // ini
+    // origin: "https://8r8th6r3-3000.asse.devtunnels.ms", //ini
   })
 );
 app.use(express.json());

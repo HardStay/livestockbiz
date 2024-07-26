@@ -11,7 +11,7 @@ function ChartPenjualan() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/penjualanHewanTernakPerBulan/${tahun}`
+          `https://localhost:5000/penjualanHewanTernakPerBulan/${tahun}`
         );
         setChartData(res.data);
       } catch (err) {

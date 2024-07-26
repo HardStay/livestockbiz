@@ -36,7 +36,7 @@ const AiConfig = ({
     e.preventDefault();
     setLoading(true);
     axios
-      .post("http://localhost:5000/aibiz", { jenisHewan, tanggal, selectedAi })
+      .post("https://localhost:5000/aibiz", { jenisHewan, tanggal, selectedAi })
       .then((res) => {
         setResponse(res.data);
         setLoading(false);

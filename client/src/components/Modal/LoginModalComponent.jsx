@@ -25,7 +25,7 @@ export function RegistCard({ onClose }) {
   const Register = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/peternak", {
+      await axios.post("https://localhost:5000/peternak", {
         namaLengkap: namaLengkap,
         username: username,
         password: password,
@@ -43,7 +43,7 @@ export function RegistCard({ onClose }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/lokasi");
+        const res = await axios.get("https://localhost:5000/lokasi");
         setLokasi(res.data);
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -148,7 +148,7 @@ export function RegistCardGovernment({ onClose }) {
   const RegisterDinas = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/dinas", {
+      await axios.post("https://localhost:5000/dinas", {
         namaDinas: namaDinas,
         username: username,
         password: password,

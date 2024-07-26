@@ -19,7 +19,7 @@ const AnimalDistributionData = () => {
   const handleData = async (provinsi) => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/hewanTernakByProvinsi",
+        "https://localhost:5000/hewanTernakByProvinsi",
         { namaProvinsi: provinsi }
       );
       setResponse(res.data);

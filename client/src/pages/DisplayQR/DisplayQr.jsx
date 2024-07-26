@@ -17,7 +17,7 @@ const DisplayQr = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/hewanTernak/${id}`);
+        const res = await axios.get(`https://localhost:5000/hewanTernak/${id}`);
         setJenisHewan(res.data.jenisHewan);
         setFamili(res.data.famili);
         setBerat(res.data.berat);
@@ -37,7 +37,7 @@ const DisplayQr = () => {
     const fetchPeternak = async () => {
       if (idPeternak) {
         try {
-          const res = await axios.get(`http://localhost:5000/peternak/${idPeternak}`);
+          const res = await axios.get(`https://localhost:5000/peternak/${idPeternak}`);
           setNamaLengkap(res.data.namaPeternak);
           setNomorTelepon(res.data.nomorTelepon);
         } catch (error) {

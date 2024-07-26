@@ -52,7 +52,7 @@ export const getAi = async (req, res) => {
           content: prompt.join("\n"),
         },
       ],
-      model: "mixtral-8x7b-32768",
+      model: "llama3-70b-8192",
       temperature: 1,
       max_tokens: 2048,
       top_p: 1,
