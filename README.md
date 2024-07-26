@@ -53,7 +53,7 @@ _ikuti langkah berikut._
    ```sh
    npm install
    ```
-4. Enter your API in `.env`
+4. Enter your API in `.env` diletakkan di dalam folder server
    ```js
    GROQ_API_KEY="generate dari Groq"
    HOST_DB="localhost"
